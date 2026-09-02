@@ -31,7 +31,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          GITHUB_PAGES: true
+          VITE_BASE: /Clippex-Site/
 
       - uses: actions/upload-pages-artifact@v3
         with:
