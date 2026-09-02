@@ -1,0 +1,11 @@
+{
+  "title": "Clippex",
+  "description": "Streamline your project management with a user-friendly platform that enhances team collaboration, task tracking, and productivity for businesses of all sizes.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

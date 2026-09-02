@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: #fafafa;
+  --color-foreground: #0f0f12;
+  --color-card: #ffffff;
+  --color-card-foreground: #0f0f12;
+  --color-muted: #f4f4f6;
+  --color-muted-foreground: #6b6b76;
+  --color-border: #ececef;
+  --color-ring: #7c3aed;
+
+  --color-primary: #7c3aed;
+  --color-primary-foreground: #ffffff;
+  --color-primary-50: #f5f2ff;
+  --color-primary-100: #ede7ff;
+  --color-primary-200: #dccdff;
+  --color-primary-300: #c3a6ff;
+  --color-primary-400: #a476fb;
+  --color-primary-500: #8b4ff2;
+  --color-primary-600: #7c3aed;
+  --color-primary-700: #6b25d4;
+  --color-primary-800: #591fac;
+  --color-primary-900: #491c89;
+
+  --color-success: #16a34a;
+  --color-success-soft: #dcfce7;
+  --color-warn: #d97706;
+  --color-warn-soft: #fef3c7;
+  --color-danger: #dc2626;
+  --color-danger-soft: #fee2e2;
+  --color-info: #2563eb;
+  --color-info-soft: #dbeafe;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  --shadow-xs: 0 1px 2px 0 rgb(15 15 18 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(15 15 18 / 0.06), 0 1px 2px -1px rgb(15 15 18 / 0.04);
+  --shadow-md: 0 4px 12px -2px rgb(15 15 18 / 0.08), 0 2px 6px -2px rgb(15 15 18 / 0.05);
+  --shadow-lg: 0 12px 32px -8px rgb(15 15 18 / 0.12), 0 4px 12px -4px rgb(15 15 18 / 0.06);
+}
+
+@layer base {
+  :root.dark {
+    --color-background: #09090b;
+    --color-foreground: #fafafa;
+    --color-card: #141416;
+    --color-card-foreground: #fafafa;
+    --color-muted: #1f1f22;
+    --color-muted-foreground: #a1a1aa;
+    --color-border: #27272a;
+    
+    --color-primary-50: #1b0a33;
+    --color-primary-100: #2c1251;
+    --color-primary-200: #3b176e;
+    --color-primary-300: #4a1d8b;
+
+    --color-success-soft: #052e16;
+    --color-warn-soft: #451a03;
+    --color-danger-soft: #450a0a;
+    --color-info-soft: #172554;
+    
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.25), 0 1px 2px -1px rgb(0 0 0 / 0.2);
+    --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.3), 0 2px 6px -2px rgb(0 0 0 / 0.2);
+    --shadow-lg: 0 12px 32px -8px rgb(0 0 0 / 0.4), 0 4px 12px -4px rgb(0 0 0 / 0.25);
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: color-mix(in srgb, var(--color-primary) 22%, transparent);
+  color: var(--color-foreground);
+}
+
+/* Scrollbar: subtle, surfaces on hover */
+.scroll-area {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.scroll-area:hover,
+.scroll-area:focus-within {
+  scrollbar-color: color-mix(in srgb, var(--color-foreground) 16%, transparent) transparent;
+}
+.scroll-area::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-area::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.scroll-area:hover::-webkit-scrollbar-thumb,
+.scroll-area:focus-within::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--color-foreground) 18%, transparent);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.35s ease-out both;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-muted) 25%,
+    color-mix(in srgb, var(--color-muted) 55%, #ffffff) 50%,
+    var(--color-muted) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ---- Scroll reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- Gentle floating for hero product cards ---- */
+@keyframes float-a {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+@keyframes float-b {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+.animate-float-a { animation: float-a 6s ease-in-out infinite; }
+.animate-float-b { animation: float-b 7s ease-in-out infinite 0.6s; }
+
+/* ---- Growing bars ---- */
+@keyframes grow-up {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.animate-grow {
+  transform-origin: bottom;
+  animation: grow-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ---- Drawing SVG line ---- */
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+.animate-draw {
+  stroke-dasharray: var(--draw-len, 400);
+  stroke-dashoffset: var(--draw-len, 400);
+  animation: draw 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+
+/* ---- Live status pulse ---- */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-success) 55%, transparent); }
+  70% { box-shadow: 0 0 0 6px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+.animate-pulse-dot { animation: pulse-ring 2s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-float-a, .animate-float-b, .animate-grow, .animate-draw, .animate-pulse-dot { animation: none; }
+  .animate-draw { stroke-dashoffset: 0; }
+}
